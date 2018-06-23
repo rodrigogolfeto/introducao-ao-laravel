@@ -3,12 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Contato;
 
 class ContatoController extends Controller
 {
     public function index()
     {
-    	return "Esse é o Index do ContatoController";
+    	$contatos = [
+    		(object)["nome"=>"Maria","tel"=>"992000000"],
+    		(object)["nome"=>"Maria","tel"=>"992111111"]
+    	];
+
+    	$contato = new Contato();
+    	$con = $contato->lista();
+    	dd($con->nome);
+
+    	return view('contato.index',compact('contatos'));
     }
 
     public function criar(Request $req)
